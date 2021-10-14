@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,8 +11,14 @@
         android:layout_height="45dp"
         android:background="@color/black"
         app:title="@string/app_name"
-        app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
+        app:titleTextColor="@color/white" />
 
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/butToast"
@@ -20,20 +27,21 @@
         android:layout_margin="15dp"
         android:backgroundTint="@color/custom1"
         android:text="@string/butToast"
-        android:textColor="@color/white"></Button>
+        android:textColor="@color/white"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_margin="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
         android:layout_weight="1"
         android:background="@color/custom1"
         android:gravity="center"
         android:text="@string/initValue"
         android:textColor="@color/white"
         android:textSize="160sp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/butCount"
@@ -41,7 +49,7 @@
         android:layout_height="55dp"
         android:layout_margin="15dp"
         android:backgroundTint="@color/custom1"
-        android:text="@string/butCount"></Button>
+        android:text="@string/butCount" />
 
 
 </LinearLayout>

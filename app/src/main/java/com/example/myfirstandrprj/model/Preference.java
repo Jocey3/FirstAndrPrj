@@ -23,6 +23,13 @@ public class Preference {
     }
 
     public int getNum() {
+        //Server delay
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return settings.getInt(SAVED_TEXT, 0);
     }
 
