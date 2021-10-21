@@ -1,6 +1,9 @@
 package com.example.myfirstandrprj.model;
 
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import io.reactivex.rxjava3.core.Single;
 
 import static android.content.SharedPreferences.Editor;
 
@@ -9,6 +12,7 @@ public class Preference {
 
     private static final String SAVED_TEXT = "num";
     private final SharedPreferences settings;
+    private static final String TAG = "DebagA";
 
     public Preference(SharedPreferences settings) {
         this.settings = settings;
@@ -22,15 +26,13 @@ public class Preference {
         ed.apply();
     }
 
-    public int getNum() {
-        //Server delay
-
-        try {
+    public Single<Integer> getNum() {
+        Log.d(TAG, Thread.currentThread().getName() + 3);
+        return Single.fromCallable(() -> {
+            //Server delay
             Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return settings.getInt(SAVED_TEXT, 0);
+            Log.d(TAG, Thread.currentThread().getName() + 4);
+            return settings.getInt(SAVED_TEXT, 0);
+        });
     }
-
 }

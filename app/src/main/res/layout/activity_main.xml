@@ -20,6 +20,24 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
+    <!--<EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:textAlignment="center" />-->
+    <TextView
+        android:id="@+id/tv_first_act"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_margin="15dp"
+        android:background="@color/custom1"
+        android:gravity="center"
+        android:text="zero"
+        android:textColor="@color/black"
+        android:textSize="55sp" />
+
     <Button
         android:id="@+id/butToast"
         android:layout_width="match_parent"
