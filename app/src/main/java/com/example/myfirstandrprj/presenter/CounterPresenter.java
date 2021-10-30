@@ -10,13 +10,13 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class Presenter {
+public class CounterPresenter {
     private final Preference preference;
     private View view;
     private final CompositeDisposable disposable = new CompositeDisposable();
     private static final String TAG = "DebagA";
 
-    public Presenter(SharedPreferences settings) {
+    public CounterPresenter(SharedPreferences settings) {
         preference = new Preference(settings);
 
     }
@@ -52,4 +52,29 @@ public class Presenter {
 
 
     }
+
+    /*public void test() {
+        Observable.fromArray(0, 1, 2, 3, 4, 5)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(integer -> {
+                    *//*Log.d("DebagTest", String.valueOf(integer));*//*
+                    return integer;
+                })
+                .filter(integer -> integer % 2 == 0)
+                .observeOn(Schedulers.io()
+                .map(integer -> integer * 2)
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(integer -> {
+//                    Log.d("DebagTest", String.valueOf(integer));
+                    return integer;
+                })
+
+                .subscribe(o -> {
+                    Log.d("DebagTest", String.valueOf(o));
+
+                });
+
+    }
+*/
 }

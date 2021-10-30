@@ -28,11 +28,11 @@ public class Preference {
 
     public Single<Integer> getNum() {
         Log.d(TAG, Thread.currentThread().getName() + 3);
-        return Single.fromCallable(() -> {
-            //Server delay
-            Thread.sleep(5000);
-            Log.d(TAG, Thread.currentThread().getName() + 4);
-            return settings.getInt(SAVED_TEXT, 0);
-        });
+            return Single.fromCallable(() -> {
+                //Server delay
+                Thread.sleep(5000);
+                Log.d(TAG, Thread.currentThread().getName() + 4);
+                return settings.getInt(SAVED_TEXT, 0);
+            });
     }
 }

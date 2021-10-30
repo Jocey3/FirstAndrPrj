@@ -12,14 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfirstandrprj.R;
-import com.example.myfirstandrprj.presenter.Presenter;
+import com.example.myfirstandrprj.presenter.CounterPresenter;
 
-public class Activity extends AppCompatActivity implements com.example.myfirstandrprj.ui.View {
+public class CounterActivity extends AppCompatActivity implements com.example.myfirstandrprj.ui.View {
 
     private Button count;
     private TextView amount;
     private TextView textView;
-    private Presenter presenter;
+    private CounterPresenter presenter;
     private ProgressBar progressBar;
     private Button toast;
 
@@ -28,7 +28,7 @@ public class Activity extends AppCompatActivity implements com.example.myfirstan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new Presenter(getSharedPreferences("settings", Context.MODE_PRIVATE));
+        presenter = new CounterPresenter(getSharedPreferences("settings", Context.MODE_PRIVATE));
         presenter.bind(this);
         progressBar = findViewById(R.id.progress_circular);
         count = findViewById(R.id.butCount);
