@@ -27,6 +27,7 @@ public class SearchPresenter {
 
     public void bindObservable(Observable<String> observable) {
         disposable.add(observable
+                .filter(s -> !s.isEmpty())
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .observeOn(Schedulers.io())
                 .flatMapSingle(nationalizer::getNation)

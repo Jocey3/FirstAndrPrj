@@ -10,20 +10,20 @@ import androidx.annotation.Nullable;
 
 import io.reactivex.rxjava3.core.Emitter;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.subjects.PublishSubject;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
-public class SearchView extends androidx.appcompat.widget.AppCompatEditText {
-    private PublishSubject<String> publishSubject = PublishSubject.create();
+public class SearchWidget extends androidx.appcompat.widget.AppCompatEditText {
+    private BehaviorSubject<String> publishSubject = BehaviorSubject.createDefault("");
     Emitter<String> emitter;
     private Observable<String> observable = Observable.create(emitter -> {
         this.emitter = emitter;
     });
 
-    public SearchView(@NonNull Context context) {
+    public SearchWidget(@NonNull Context context) {
         this(context, null);
     }
 
-    public SearchView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public SearchWidget(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         addTextChangedListener(new TextWatcher() {
             @Override
@@ -33,8 +33,8 @@ public class SearchView extends androidx.appcompat.widget.AppCompatEditText {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                publishSubject.onNext(s.toString());
-                emitter.onNext(s.toString());
+                publishSubject.onNext(s.toString());//лучше, бо не костиль
+                emitter.onNext(s.toString());// костиль
             }
 
             @Override

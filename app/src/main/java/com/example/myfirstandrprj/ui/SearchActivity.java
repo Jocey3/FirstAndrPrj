@@ -7,12 +7,15 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.myfirstandrprj.R;
+import com.example.myfirstandrprj.model.entyties.Country;
 import com.example.myfirstandrprj.presenter.SearchPresenter;
-import com.example.myfirstandrprj.widgets.SearchView;
+import com.example.myfirstandrprj.widgets.SearchWidget;
+
+import java.util.List;
 
 public class SearchActivity extends Activity implements com.example.myfirstandrprj.ui.SearchView {
     private final SearchPresenter presenter = new SearchPresenter();
-    private SearchView searchView;
+    private SearchWidget searchView;
     private TextView textView;
 
     @Override
@@ -38,8 +41,13 @@ public class SearchActivity extends Activity implements com.example.myfirstandrp
         presenter.onPause();
     }
 
+
     @Override
-    public void showJson(String data) {
-        textView.setText(data);
+    public void showJson(List<Country> countries) {
+        String as = "";
+        for (Country country : countries) {
+            as += country.getId() + "\n";
+        }
+        textView.setText(as);
     }
 }
