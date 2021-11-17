@@ -14,7 +14,10 @@
             android:name=".ui.CounterActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyFirstAndrPrj.NoActionBar" />
-        <activity android:name=".ui.SearchActivity">
+        <activity android:name=".ui.SearchActivity" />
+        <activity
+            android:name=".ui.ListActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
