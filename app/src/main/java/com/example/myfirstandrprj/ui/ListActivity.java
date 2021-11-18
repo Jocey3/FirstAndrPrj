@@ -3,8 +3,10 @@ package com.example.myfirstandrprj.ui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirstandrprj.R;
+import com.example.myfirstandrprj.utils.Consumer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,18 +39,14 @@ public class ListActivity extends AppCompatActivity {
             data.add(random.nextInt());
         }
         adapter.setAll(data);
+        adapter.setOnClickListener(integer -> Toast.makeText(this, String.valueOf(integer), Toast.LENGTH_LONG).show());//показ актівіті
 
     }
 
 
     static class Adapter extends RecyclerView.Adapter<VH> {
         private final List<Integer> data = new ArrayList<>();
-
-        @Override
-        public int getItemViewType(int position) {
-
-            return super.getItemViewType(position);
-        }
+        private Consumer<Integer> clickListener;
 
         @NonNull
         @Override
@@ -55,13 +54,25 @@ public class ListActivity extends AppCompatActivity {
             Log.d("myLog", "onCreate");
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             return new VH(parent, inflater);// інфлатер нада шоб перевести хмл в джаву
+        }
 
+        public void setOnClickListener(Consumer<Integer> consumer) {
+            clickListener = consumer;
         }
 
         @Override
         public void onBindViewHolder(@NonNull VH holder, int position) {
-            Log.d("myLog", "onBind " + data.get(position) + " pos: " + position);
-            holder.bind(data.get(position));
+            final Integer integer = data.get(position);
+            Log.d("myLog", "onBind " + integer + " pos: " + position);
+            holder.bind(integer);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    clickListener.apply(integer);
+                }
+            });
+
         }
 
         @Override
